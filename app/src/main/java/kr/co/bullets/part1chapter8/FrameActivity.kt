@@ -3,6 +3,7 @@ package kr.co.bullets.part1chapter8
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.bullets.part1chapter8.databinding.ActivityFrameBinding
 
 class FrameActivity : AppCompatActivity() {
@@ -18,5 +19,14 @@ class FrameActivity : AppCompatActivity() {
         val frameAdapter = FrameAdapter(images)
 
         binding.viewPager.adapter = frameAdapter
+
+        // ViewPager2와 TabLayout을 연결
+        TabLayoutMediator(
+            binding.tabLayout,
+            binding.viewPager
+        ) {
+            tab, position ->
+            binding.viewPager.currentItem = tab.position
+        }.attach()
     }
 }
